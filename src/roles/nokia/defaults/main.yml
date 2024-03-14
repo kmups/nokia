@@ -1,0 +1,7 @@
+---
+# defaults file for nokia
+vlans:
+  - 33
+  - 44
+  - 55
+  - 55

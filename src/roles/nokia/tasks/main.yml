@@ -1,0 +1,36 @@
+---
+# tasks file for nokia
+- name: Configure hostname
+  arista.eos.eos_hostname:
+    config:
+      hostname: "{{ inventory_hostname }}"
+  tags:
+    - hostname
+
+- name: Configure lldp
+  arista.eos.eos_lldp:
+  tags:
+    - lldp
+
+- name: Configure vlans
+  arista.eos.eos_vlans:
+    config:
+      name: "vlan{{ vlan_id }}"
+      state: active
+      vlan_id: "{{ vlan_id }}"
+  loop: "{{ vlans }}"
+  loop_control:
+    label: vlan_id
+  tags:
+    - vlans
+
+- name: Run verification commands
+  arista.eos.eos_command:
+    commands:
+      - command: show lldp neighbours
+        output: text
+      - command: show lldp neighbours
+        output: text
+      - command: show lldp neighbours
+        output: text
+    register: output

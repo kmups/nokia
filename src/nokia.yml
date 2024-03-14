@@ -1,0 +1,24 @@
+---
+- name: Nokia demo
+  hosts: eos
+  gather_facts: false
+
+  tasks:
+
+    - name: Gather facts
+      arista.eos.eos_facts:
+
+    - name: Backup switches
+      arista.eos.eos_config:
+        backup: true
+        backup_options:
+          dir_path: /tmp
+
+    - name: Nokia role
+      ansible.builtin.import_role: nokia
+
+    - name: Backup switches
+      arista.eos.eos_config:
+        backup: true
+        backup_options:
+          dir_path: /tmp

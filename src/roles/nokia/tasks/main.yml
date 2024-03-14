@@ -4,13 +4,9 @@
   arista.eos.eos_hostname:
     config:
       hostname: "{{ inventory_hostname }}"
-  tags:
-    - hostname
 
 - name: Configure lldp
   arista.eos.eos_lldp:
-  tags:
-    - lldp
 
 - name: Configure vlans
   arista.eos.eos_vlans:
@@ -21,16 +17,16 @@
   loop: "{{ vlans }}"
   loop_control:
     label: vlan_id
-  tags:
-    - vlans
 
 - name: Run verification commands
   arista.eos.eos_command:
     commands:
+      - command: show vlans
+        output: json
       - command: show lldp neighbours
-        output: text
-      - command: show lldp neighbours
-        output: text
-      - command: show lldp neighbours
-        output: text
-    register: output
+        output: json
+  register: output
+
+- name: Output command output
+  ansible.builtin.debug:
+    var: "{{ output }}"

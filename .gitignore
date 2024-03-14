@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 *.retry
+
+# ignore docker mnt
+mnt/

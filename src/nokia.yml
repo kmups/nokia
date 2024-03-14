@@ -15,7 +15,8 @@
           dir_path: /tmp
 
     - name: Nokia role
-      ansible.builtin.import_role: nokia
+      ansible.builtin.import_role:
+        name: nokia
 
     - name: Backup switches
       arista.eos.eos_config:

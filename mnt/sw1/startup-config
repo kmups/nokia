@@ -1,0 +1,27 @@
+! Startup-config last modified at Thu Mar 14 23:50:46 2024 by root
+! device: b2586b722452 (cEOSLab, EOS-4.28.2F-28369039.4282F (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$OiWBNCtbP2nbGHMe$J2Auw/eivYDTs3X1R8n0ZDrkfZIf7MAVNCwyuhfi7FEqoOOv.c4Vi5tJ2IURga9CsrS7/qJ41B7C/99GDnf5N.
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
+hostname b2586b722452
+!
+spanning-tree mode mstp
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Management0
+   ip address 10.10.10.11/24
+!
+no ip routing
+!
+end

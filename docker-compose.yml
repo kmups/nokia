@@ -1,0 +1,27 @@
+---
+services:
+  sw1:
+    image: "ceos:4.28.2"
+    privileged: true
+    networks:
+      - "mngt"
+      - "net0"
+      - "net1"
+      - "net2"
+    volumes:
+      - "./mnt/sw1:/mnt/flash:rw"
+  sw2:
+    image: "ceos:4.28.2"
+    privileged: true
+    networks:
+      - "mngt"
+      - "net0"
+      - "net1"
+      - "net2"
+    volumes:
+      - "./mnt/sw2:/mnt/flash:rw"
+networks:
+  mngt:
+  net0:
+  net1:
+  net2:

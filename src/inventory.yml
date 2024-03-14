@@ -6,7 +6,9 @@ all:
     eos:
       hosts:
         sw1:
+          ansible_host: 10.10.10.11
         sw2:
+          ansible_host: 10.10.10.12
       vars:
         ansible_user: admin
         ansible_password: !vault |
@@ -17,6 +19,13 @@ all:
           6438633838393436340a666434303532636335613636616466666564326239336239616331343663
           6539
         ansible_network_os: arista.eos.eos
-        ansible_become: True
-        ansible_become_method: enable
-        connection: ssh
+        ansible_become: true
+        ansible_become_method: true
+        ansible_become_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          31656461616139646163643665323364316262633030373565373930663633653430343237316266
+          3962306337313263356163383262313136633235396133380a643461313739623931616361623839
+          37623636623234316133663036616334653636626431363166343165333138643433656530303666
+          6438633838393436340a666434303532636335613636616466666564326239336239616331343663
+          6539
+        ansible_connection: ansible.netcommon.network_cli
